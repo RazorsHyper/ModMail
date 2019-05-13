@@ -1216,13 +1216,14 @@ class Utility:
         for id in whitelisted:
             user = self.bot.get_user(id)
             if user:
-                users.append(users)
-            role = self.modmail_guild.get_role(id)
+                users.append(user)
+            role = self.bot.modmail_guild.get_role(id)
             if role:
                 roles.append(role)
         
         em = Embed(color=self.bot.main_color)
         em.title = 'Oauth Whitelist'
+
         em.add_field(name='Users', value=' '.join(u.mention for u in users) or 'None')
         em.add_field(name='Roles', value=' '.join(r.mention for r in roles) or 'None')
 
