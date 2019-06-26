@@ -96,7 +96,7 @@ class Modmail(commands.Cog):
         To use snippets:
 
         First create a snippet using:
-        - `{prefix}snippet add snippet-name A pre-defined text.`
+        - `{prefix}snippets add snippet-name A pre-defined text.`
 
         Afterwards, you can use your snippet in a thread channel
         with `{prefix}snippet-name`, the message "A pre-defined text."
@@ -251,8 +251,8 @@ class Modmail(commands.Cog):
 
         if cancel:
 
-            if thread.close_task is not None:
-                await thread.cancel_closure()
+            if thread.close_task is not None or thread.auto_close_task is not None:
+                await thread.cancel_closure(all=True)
                 embed = discord.Embed(
                     color=discord.Color.red(),
                     description="Scheduled close has been cancelled.",
